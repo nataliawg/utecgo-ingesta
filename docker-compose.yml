@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+
+  ms_boletas:
+    build:
+      context: ./ms_boletas
+    environment:
+      - STAGE=${STAGE}
+    volumes:
+      - /home/ubuntu/logs:/app/logs
+    depends_on:
+      - dynamodb
+
+  ms_descuentos:
+    build:
+      context: ./ms_descuentos
+    environment:
+      - STAGE=${STAGE}
+    volumes:
+      - /home/ubuntu/logs:/app/logs
+    depends_on:
+      - dynamodb
+
+  ms_encuestas:
+    build:
+      context: ./ms_encuestas
+    environment:
+      - STAGE=${STAGE}
+    volumes:
+      - /home/ubuntu/logs:/app/logs
+    depends_on:
+      - dynamodb
+
+  ms_estudiantes:
+    build:
+      context: ./ms_estudiantes
+    environment:
+      - STAGE=${STAGE}
+    volumes:
+      - /home/ubuntu/logs:/app/logs
+    depends_on:
+      - dynamodb
+
+  ms_inscripciones:
+    build:
+      context: ./ms_inscripciones
+    environment:
+      - STAGE=${STAGE}
+    volumes:
+      - /home/ubuntu/logs:/app/logs
+    depends_on:
+      - dynamodb
+
+  ms_programas:
+    build:
+      context: ./ms_programas
+    environment:
+      - STAGE=${STAGE}
+    volumes:
+      - /home/ubuntu/logs:/app/logs
+    depends_on:
+      - dynamodb
+
+  dynamodb:
+    image: amazon/dynamodb-local
+    ports:
+      - "8000:8000"

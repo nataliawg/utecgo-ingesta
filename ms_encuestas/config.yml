@@ -1,0 +1,14 @@
+stages:
+  dev:
+    s3_bucket: "utecgo-dev-bucket"
+    mv: "mv ds dev"  
+
+  test:
+    s3_bucket: "utecgo-test-bucket"   
+    mv: "mv ds test"  
+
+  prod:
+    s3_bucket: "utecgo-prod-bucket" 
+    mv: "mv ds prod" 
+
+aws_region: "us-east-1a"
