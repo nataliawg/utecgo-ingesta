@@ -27,6 +27,7 @@ def get_stage_config(stage):
     return stage_config
 
 def get_dynamodb_table(region_name):
+    session = boto3.Session(region_name=region_name)
     table_name = 'tabla_programas'  #cambiar aca
     endpoint_url = f'https://dynamodb.{region_name}.amazonaws.com'
     dynamodb = boto3.resource('dynamodb', region_name=region_name, endpoint_url=endpoint_url)
@@ -77,7 +78,7 @@ def main():
     s3_bucket = stage_config['s3_bucket']
     region = load_config()['aws_region']
     
-    table = get_dynamodb_table(region)
+    table = get_dynamodb_table('us-east-1')
     
     estudiantes = scan_table_with_pagination(table)
     
