@@ -10,8 +10,7 @@ services:
     volumes:
       - ~/.aws:/root/.aws
       - /home/ubuntu/logs:/app/logs
-    depends_on:
-      - dynamodb
+
 
   ms_descuentos:
     build:
@@ -21,8 +20,7 @@ services:
     volumes:
       - ~/.aws:/root/.aws
       - /home/ubuntu/logs:/app/logs
-    depends_on:
-      - dynamodb
+
 
   ms_encuestas:
     build:
@@ -32,8 +30,7 @@ services:
     volumes:
       - ~/.aws:/root/.aws
       - /home/ubuntu/logs:/app/logs
-    depends_on:
-      - dynamodb
+
 
   ms_estudiantes:
     build:
@@ -43,8 +40,7 @@ services:
     volumes:
       - ~/.aws:/root/.aws
       - /home/ubuntu/logs:/app/logs
-    depends_on:
-      - dynamodb
+
 
   ms_inscripciones:
     build:
@@ -54,8 +50,7 @@ services:
     volumes:
       - ~/.aws:/root/.aws
       - /home/ubuntu/logs:/app/logs
-    depends_on:
-      - dynamodb
+
 
   ms_programas:
     build:
@@ -65,10 +60,5 @@ services:
     volumes:
       - ~/.aws:/root/.aws
       - /home/ubuntu/logs:/app/logs
-    depends_on:
-      - dynamodb
 
-  dynamodb:
-    image: amazon/dynamodb-local
-    ports:
-      - "8000:8000"
+

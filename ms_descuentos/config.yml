@@ -11,4 +11,4 @@ stages:
     s3_bucket: "utecgo-prod-bucket" 
     mv: "mv ds prod" 
 
-aws_region: "us-east-1a"
+aws_region: "us-east-1"
