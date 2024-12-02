@@ -5,6 +5,15 @@ import yaml
 import json
 from botocore.exceptions import ClientError
 from datetime import datetime
+import json
+from decimal import Decimal
+
+def decimal_to_serializable(obj):
+    if isinstance(obj, Decimal):
+        # Convierte a float o int según lo que prefieras
+        return float(obj)
+    raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
+
 
 #logs
 log_file = '/app/logs/ms_estudiantes.log' #cambiar aca
@@ -58,9 +67,10 @@ def save_to_file(data, file_name):
     logger.info(f'Se va a guardar el archivo {file_name}')
     
     with open(file_name, 'w') as jsonfile:
-        json.dump(data, jsonfile)
+        json.dump(data, jsonfile, default=decimal_to_serializable)
     
     logger.info(f'Archivo guardado exitosamente como {file_name}')
+
 
 def upload_to_s3(file_name, s3_bucket, s3_key):
     s3_client = boto3.client('s3')
@@ -79,7 +89,7 @@ def main():
     region = load_config()['aws_region']
     
     table = get_dynamodb_table('us-east-1')   
-        
+
     estudiantes = scan_table_with_pagination(table)
     
     output_file = f'/app/ingesta/{stage}_estudiantes_data.json' #cambiar aca
