@@ -28,7 +28,8 @@ def get_stage_config(stage):
 
 def get_dynamodb_table(region_name):
     table_name = 'tabla_descuentos'  #cambiar aca
-    dynamodb = boto3.resource('dynamodb', region_name=region_name)
+    endpoint_url = f'https://dynamodb.{region_name}.amazonaws.com'
+    dynamodb = boto3.resource('dynamodb', region_name=region_name, endpoint_url=endpoint_url)
     table = dynamodb.Table(table_name)
     return table
 
