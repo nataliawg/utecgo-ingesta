@@ -10,7 +10,6 @@ from decimal import Decimal
 
 def decimal_to_serializable(obj):
     if isinstance(obj, Decimal):
-        # Convierte a float o int según lo que prefieras
         return float(obj)
     raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
 
